@@ -507,6 +507,7 @@
 				7E07023B1EED29C600084A11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E07023C1EED29C600084A11 /* Build configuration list for PBXNativeTarget "ybxziconTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +516,7 @@
 				7E07023E1EED29C600084A11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E07023F1EED29C600084A11 /* Build configuration list for PBXNativeTarget "ybxziconUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +525,7 @@
 				7E0702411EED29C600084A11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

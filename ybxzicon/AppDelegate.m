@@ -16,7 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    UIWindow *window = [UIWindow alloc];
+    window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyWindow];
     return YES;
 }
 
@@ -28,8 +30,24 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //注册一个后台任务，这样可以使应用程序一直存在。等到我们告诉系统任务完成了，终止运行
+    UIBackgroundTaskIdentifier backgroundTask = [application beginBackgroundTaskWithExpirationHandler:nil];
+    //创建一个新的后台队列来运行我们的后台代码
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc]init];
+    [backgroundQueue addOperationWithBlock:^{
+        //发送通知到服务器
+        //准备URL
+        NSURL *notificationURL = [NSURL URLWithString:@"http://oreilly.com/"];
+        //准备URL请求
+        NSURLRequest *notificationURLRequest = [NSURLRequest requestWithURL:notificationURL];
+        //发送请求并记录回复
+        NSData *loadedDate = [NSURLConnection sendSynchronousRequest:notificationURLRequest returningResponse:nil error:nil];
+        //将数据转换为字符串
+        NSString *loadedString = [[NSString alloc]initWithData:loadedDate encoding:NSUTF8StringEncoding];
+        NSLog(@"Loaded:%@",loadedString);
+        //告诉系统，后台任务完成
+        [application endBackgroundTask:backgroundTask];
+    }];
 }
 
 
